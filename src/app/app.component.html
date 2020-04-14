@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-3" src="../assets/img/icons8-coronavirus-64.png" alt="" width="72" height="72">
+    <h2>Covid-19 impact estimator</h2>
+    <p class="lead">Facebook and Andela #BuildForSDG Challenge 2020. </p>
+  </div>
+
+  <div class="col-md-12">
+    <h4 class="text-center mb-4">Calculate covid-19 impact</h4>
+    <form
+          (ngSubmit)="onCalculateImpact()"
+          [formGroup]="covid19EstimatorForm"
+        class="mt-4">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="population">Population:</label>
+          <input
+              formControlName="population"
+              type="number"
+              id="population"
+              for="data-population"
+              class="form-control"
+              name="data-population"
+              data-population=""
+              placeholder="enter population size"
+              required>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <label for="time-period">Time Period</label>
+          <input type="number"
+                 formControlName="timeToElapse"
+                 class="form-control"
+                 id="time-period"
+                 name="data-time-to-elapse"
+                 data-time-to-elapse=""
+                 placeholder="enter time period"
+                 required>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label for="country">Type of time period</label>
+          <select
+                class="custom-select d-block w-100"
+                formControlName="periodType"
+                id="time-period-type">
+            <option value="">Choose Period Type...</option>
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+          </select>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="reported-cases">Number of Reported Cases</label>
+          <input
+                type="number"
+                formControlName="reportedCases"
+                name="data-reported-cases"
+                data-reported-cases=""
+                class="form-control"
+                id="reported-cases"
+                placeholder="enter number of reported cases"
+                required>
+        </div>
+
+        <div class="col-md-4 mb-3">
+          <label for="total-hospital-beds">Total Hospital Beds</label>
+          <input
+                  type="number"
+                  formControlName="totalHospitalBeds"
+                  id="total-hospital-beds"
+                  name="data-total-hospital-beds"
+                  data-total-hospital-beds=""
+                  class="form-control"
+                  placeholder=""
+                  required>
+        </div>
+
+      </div>
+      <hr class="mb-4">
+
+      <div class="row">
+          <div>
+            <button class="btn btn-outline-dark btn-lg" [disabled]="!covid19EstimatorForm.valid">
+               Calculate <i class="fas fa-arrow-right"></i>
+            </button>
+            <div *ngIf="userInputValid" class="impactResult mt-4">
+              <pre>{{ userInput }}</pre>
+            </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  </div>
